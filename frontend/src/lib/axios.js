@@ -10,7 +10,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: import.meta.env.MODE === "development" ? "https://ecomerce-site-ml5t.onrender.com" : "https://api.my-ecommerce-site.com", // Correct production URL
+    baseURL: import.meta.env.MODE === "development" ? "https://ecomerce-site-ml5t.onrender.com" : "https://ecomerce-site-ml5t.onrender.com", // Correct production URL
     withCredentials: true,
 });
 
