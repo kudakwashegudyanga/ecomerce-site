@@ -1,29 +1,27 @@
 import { useEffect, useState } from "react";
 import { ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCartStore } from "../stores/useCartStore";
-import toast from "react-hot-toast";
 import { useUserStore } from "../stores/useUserStore";
-
-
-
+import toast from "react-hot-toast";
 
 
 const FeaturedProducts = ({ featuredProducts }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [itemsPerPage, setItemsPerPage] = useState(4);
-	const { user } = useUserStore();
 
-
+	
+	const { user } = useUserStore()
 	const { addToCart } = useCartStore();
-	const handleAddToCart = () => {
-		if (!user) {
-			toast.error("Please login to add products to cart", { id: "login" });
-			return;
-		} else {
-			// add to cart
-			addToCart(featuredProducts);
-		}
-	};
+    const handleAddToCart = (product) => { // Takes a single product as argument
+        // const { user } = useUserStore.getState(); // Get user state
+        if (!user) {  // Check isLoggedIn specifically
+            toast.error("Please log in to add products to cart", { id: "login" });
+            return;
+        }
+        addToCart(product); // Pass the individual product
+    };
+
+
 
 	useEffect(() => {
 		const handleResize = () => {
